@@ -1,0 +1,33 @@
+<?php 
+    echo "<table class='table table-hover table-responsive text-center '>";
+	echo "<tbody>";
+	echo "	<tr>";
+	echo "		<td colspan='6'>Vueltas</td>";
+	echo "	</tr>";
+	echo "	<tr>";
+	echo "		<td>Unidad</td>";
+	echo "		<td>Vuelta</td>";
+	echo "		<td>Hora</td>";
+	echo "		<td>Puntos</td>";
+	echo "		<td>Diferencia</td>";
+	echo "		<td>Sumatoria</td>";
+	echo "	</tr>";
+	echo "	<tr>";
+	echo "		<td>22</td>";
+	echo "		<td>Salida: 5:00:00</td>";
+	echo "		<td>5:35:24</td>";
+	echo "		<td>1-Pestalozzi</td>";
+	echo "		<td>-5</td>";
+	echo "		<td>+ 8</td>";
+    echo "	</tr>";
+    echo "	<tr>";
+	echo "		<td>22</td>";
+	echo "		<td>Plaza San Pedro 5:53:25</td>";
+	echo "		<td>6:04:02</td>";
+	echo "		<td>Av Juarez</td>";
+	echo "		<td>-4</td>";
+	echo "		<td>+ 23</td>";
+	echo "	</tr>";
+	echo "</tbody>";
+    echo "</table>";
+?>

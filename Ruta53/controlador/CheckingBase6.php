@@ -1,0 +1,50 @@
+<?php
+	require_once '../conf/CnnInfo.php';
+
+	$Conection=sqlsrv_connect($serverName,$connectionOptions);
+
+	$idchecador=8;
+	$id=$_POST['id'];
+    $Ruta=$_POST['Who'];
+    $fecha=date("Y-m-d");
+    $hora=date("H:i:s");
+
+/*
+    echo $idchecador;
+    echo '<br>';
+    echo $id;
+    echo '<br>';
+    echo $Ruta;
+    echo '<br>';
+    echo $fecha;
+    echo '<br>';
+    echo $hora;
+    echo '<br>';
+    */
+
+
+	$tsql="INSERT INTO Checking(SLL_IdSalidaLlegada,Chk_IdCheck,Chk_FechaCheckPoint,Chk_HoraCheckPoint) VALUES(?,?,?,?)";
+    $params = array($id,$idchecador,$fecha,$hora);
+    $getResults= sqlsrv_query($Conection, $tsql, $params);
+    $rowsAffected = sqlsrv_rows_affected($getResults);
+      if ($getResults == FALSE or $rowsAffected == FALSE)
+          die(FormatErrors(sqlsrv_errors()));
+          echo ("Unidad:".$Ruta." Cheking Base 6 Correct: " . PHP_EOL);
+
+    sqlsrv_free_stmt($getResults);
+
+
+    function FormatErrors( $errors )
+{
+     #Display errors.
+    echo "Error information: ";
+
+    foreach ( $errors as $error )
+    {
+        echo "SQLSTATE: ".$error['SQLSTATE']."";
+        echo "Code: ".$error['code']."";
+        echo "Message: ".$error['message']."";
+    }
+}
+
+?>
