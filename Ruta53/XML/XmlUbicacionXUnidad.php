@@ -1,6 +1,4 @@
 <?php
-session_start();  
-$dato = $_SESSION['LaWeaQueConoce'];
 
  require_once "../conf/CnnInfo.php";
 
@@ -16,7 +14,8 @@ $connection=sqlsrv_connect($serverName, $connectionOptions);
 if (!$connection) {  die('Not connected : ' . $connection->connect_error);}
 
 
-$Fecha=date('Y-m-d');
+//$Fecha=date('Y-m-d');
+$unidad=$_GET['unidad'];
 
 $tsql="
 SELECT top 1 sl.SLL_IdSalidaLlegada,com.Cb_NumeroRuta,ch.Ch_NombreChofer,ch.Ch_ApellidoPaterno,ch.Ch_ApellidoMaterno,gps.Direccion,gps.Latitud,gps.Longitud,gps.Fecha,gps.Hora from Dueño_Combi dc
@@ -26,7 +25,7 @@ inner join Cb_Combi com on com.Cb_IdCombi=dc.Cb_IdCombi
 inner join Salidas_Llegadas sl on sl.Cb_IdCombi=com.Cb_IdCombi
 inner join Ch_Chofer ch on ch.Ch_IdChofer=sl.Ch_IdChofer
 inner join LocationGPS gps on gps.Imei=com.Cb_Imei
-where us.id_UsrUsuario=$dato;
+where com.Cb_IdCombi=$unidad;
 ";
 
 #$tsql= "SELECT top 1 * FROM coordenadas where telefono='2228514481' order by id desc;";

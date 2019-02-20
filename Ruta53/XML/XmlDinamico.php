@@ -14,23 +14,45 @@ $connection=sqlsrv_connect($serverName, $connectionOptions);
 if (!$connection) {  die('Not connected : ' . $connection->connect_error);}
 
 
-$Fecha=$_GET['Fecha'];
-$unidad=$_GET['unidad'];
+$Fecha=$_POST['fecha'];
+$unidad=$_POST['unidad'];
+$corrida=$_POST['corrida'];
+
 //echo $Fecha;
 
 
 $tsql="
-SELECT Rol.En_IdEnrolado,com.Cb_NumeroRuta,Chof.Ch_NombreChofer,Chof.Ch_ApellidoPaterno,Chof.Ch_ApellidoMaterno,gps.Direccion,gps.Latitud,gps.Longitud,gps.Fecha,gps.Hora from En_Enroler Rol 
-inner join Cb_Combi Com on Com.Cb_IdCombi=Rol.Cb_IdCombi
-inner join Ch_Chofer Chof on Chof.Ch_IdChofer=Rol.Ch_IdChofer
-inner join LocationGPS GPS on GPS.Imei=Com.Cb_Imei
-where Com.Cb_IdCombi='$unidad' AND Fecha='$Fecha'
+SELECT 
+    SL.SLL_IdSalidaLlegada,
+    Cm.Cb_NumeroRuta,
+    Ch.Ch_NombreChofer,
+    Ch.Ch_ApellidoPaterno,
+    Ch.Ch_ApellidoMaterno,
+    GPS.Direccion,
+    GPS.Latitud,
+    GPS.Longitud,
+    GPS.Fecha,
+    convert(Time, GPS.Hora) as Hora 
+FROM Salidas_Llegadas SL 
+    inner join Cb_Combi Cm on Cm.Cb_IdCombi=SL.Cb_IdCombi
+    inner join Ch_Chofer Ch on Ch.Ch_IdChofer=Sl.Ch_IdChofer
+    inner join LocationGPS GPS on GPS.Imei=Cm.Cb_Imei
+WHERE 
+    Cm.Cb_IdCombi='$unidad' AND 
+    GPS.Fecha='$Fecha' AND
+    SL.SSL_EstadoIO='Inicio'  AND
+    (
+    Hora BETWEEN 
+        (SELECT SUBSTRING(Inicio, 11, 6) from (SELECT ROW_NUMBER() OVER(ORDER BY Inicio) AS corrida, * from Report2 ) as x where corrida = $corrida)
+    and 
+        (SELECT SUBSTRING(Fin, 11, 6) from (SELECT ROW_NUMBER() OVER(ORDER BY Inicio) AS corrida, * from Report2 ) as x where corrida = $corrida)
+    )
 ";
 
 #$tsql= "SELECT top 1 * FROM coordenadas where telefono='2228514481' order by id desc;";
 $getResults= sqlsrv_query($connection, $tsql);
 if (!$getResults) {
-  die('Invalid query: '.$tsql . sqlsrv_errors($connection));
+  die('Invalid query: '. sqlsrv_errors($connection));
 }
 
 header("Content-type: text/xml");
@@ -41,7 +63,7 @@ while ($row = @sqlsrv_fetch_array($getResults,SQLSRV_FETCH_ASSOC)){
 
   $node = $dom->createElement("marker");
   $newnode = $parnode->appendChild($node);
-  $newnode->setAttribute("Id",$row['En_IdEnrolado']);
+  $newnode->setAttribute("Id",$row['SLL_IdSalidaLlegada']);
   $newnode->setAttribute("Ruta",$row['Cb_NumeroRuta']);
   $newnode->setAttribute("Nombre", $row['Ch_NombreChofer']);
   $newnode->setAttribute("Paterno", $row['Ch_ApellidoPaterno']);

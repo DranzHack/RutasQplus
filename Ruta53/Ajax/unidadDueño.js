@@ -6,7 +6,7 @@ $(document).ready(function(){
 				a.append('unidad',x.target.getAttribute('data-id')),
 				console.log(x.target.getAttribute('data-id')),
 				$.ajax({
-					url: '../../controlador/modalMonitoreoUnidad.php',
+					url: '../../controlador/TablaMonitoreo.php',
 					type: "POST",
 					data: a,
 					contentType: false,

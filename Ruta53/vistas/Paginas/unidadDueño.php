@@ -70,9 +70,50 @@
     </div>
 
     <div id="showResume" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content" id="resume" style="overflow-y: scroll">
+        <div class="modal-dialog" style="max-width: 70% !important;">
+            <div class="modal-content" style="overflow-y: scroll">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Recorridos</th>
+                            <th class="text-center">Unidad</th>
+                            <th class="text-center">Conductor</th>
+                            <th class="text-center">#Vuelta</th>
+                            <th class="text-center">Inicio</th>
+                            <th class="text-center">Chk 1</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 2</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 3</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 4</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 5</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 6</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 7</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 8</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 9</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 10</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 11</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 12</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 13</th>
+                            <th class="text-center">Minutos</th>
+                            <th class="text-center">Chk 14</th>
+                            <th class="text-center">Fin</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resume">
                         
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

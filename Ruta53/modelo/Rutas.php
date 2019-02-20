@@ -41,6 +41,29 @@
         return false;
     }
 
+    public function UsuarioConectado($Usuario)
+    {
+      $query="SELECT u.Usr_Usuario,c.Cb_NumeroRuta from Dueño_Combi du
+              inner join Dueños d on d.Id_Dueño=du.Id_Dueño
+              inner join Cb_Combi c on c.Cb_IdCombi=du.Cb_IdCombi
+              inner join Usr_Usuarios u on u.id_UsrUsuario=d.id_UsrUsuario
+              where u.id_UsrUsuario=$Usuario";
+
+        if($Data=$this->ExecuteQuery($query))
+        {
+          $Datos=array();
+          $Filas=0;
+          while($Resultado = $this->obtener_fila($Data))
+          {
+            $Datos[$Filas][0] = $Resultado['Usr_Usuario'];
+            $Datos[$Filas][1] = $Resultado['Cb_NumeroRuta'];
+          }
+          return $Datos;
+        }
+        else
+          return false;
+    }
+
     function Login($usuario,$contra)
      {
          $query = "SELECT id_UsrUsuario,Usr_Usuario,Usr_Password,Usr_Tipo FROM Usr_Usuarios where (Usr_Usuario= '$usuario') AND Usr_Password = '$contra'  ";
@@ -458,8 +481,9 @@ ISNULL(CONVERT(varchar,Base11,121),'No Check')As B11,ISNULL(CONVERT(varchar,Base
                         ISNULL(CONVERT(varchar,(DATEDIFF(MINUTE,B12,B13)),121),'No Check') AS B12B13,
                         ISNULL(CONVERT(varchar,(DATEDIFF(MINUTE,B13,B14)),121),'No Check') AS B13B14,
                         ISNULL(CONVERT(varchar,Fin,121),'No Checking') As Fin
-                        from Report2 ".($_POST['fecha']?"where Inicio like '%".$_POST['fecha']."%'":"")." order by Inicio";
-
+                        from Report2 ".($_POST['fecha']?"where Inicio like '%".$_POST['fecha']."%'":"")." ".
+                        ($_POST['unidad']?"where Cb_NumeroRuta = (select Cb_NumeroRuta from Cb_Combi where Cb_IdCombi = '".$_POST['unidad']."')":"")
+                        ." order by Inicio";
         $Register=sqlsrv_query($this->srv->conectar(),$query);
         return $Register;
         $this->srv->desconectar();
@@ -551,6 +575,22 @@ ISNULL(CONVERT(varchar,Base11,121),'No Check')As B11,ISNULL(CONVERT(varchar,Base
      {
       $query="select * from Report2 where Cb_NumeroRuta = (select Cb_NumeroRuta from Cb_Combi where Cb_IdCombi = '$idCombi')";
       echo $query;
+      $Register=sqlsrv_query($this->srv->conectar(),$query);
+      return $Register;
+      $this->srv->desconectar();
+     }
+
+     function corridasUnidad()
+     {
+      $query="select corrida, format(convert(datetime,left(Inicio, 19)),'HH:mm') as hora from 
+                  (select 
+                      ROW_NUMBER() OVER(ORDER BY Inicio) AS corrida,
+                      * from Report2
+                  ) as x
+              where 
+                  Cb_NumeroRuta = (select Cb_NumeroRuta from Cb_Combi where Cb_IdCombi = ".$_POST['unidad'].") and 
+                  Inicio like '%".$_POST['fecha']."%'";
+      //echo $query;
       $Register=sqlsrv_query($this->srv->conectar(),$query);
       return $Register;
       $this->srv->desconectar();

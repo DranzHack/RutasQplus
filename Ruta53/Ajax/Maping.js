@@ -419,7 +419,6 @@ function CelMorado()
                         var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
                     }
                 });
-
           }
 
           function CheckingBase14()

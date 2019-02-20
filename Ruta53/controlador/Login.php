@@ -3,8 +3,6 @@ session_start();
 $Username=$_POST['Usuario'];
 $Pass=$_POST['Pass'];
 
-//echo '<h1>'.$Username.'</h1>';
-//echo '<h1>'.$Pass.'</h1>';
 
 require_once '../modelo/Rutas.php';
 
