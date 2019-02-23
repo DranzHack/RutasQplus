@@ -1,6 +1,5 @@
 <?php
-
- require_once "../conf/CnnInfo.php";
+    require_once "../conf/CnnInfo.php";
 
     //Establishes the connection
 //$conn = sqlsrv_connect($serverName, $connectionOptions);
@@ -13,23 +12,20 @@ $parnode = $dom->appendChild($node);
 $connection=sqlsrv_connect($serverName, $connectionOptions);
 if (!$connection) {  die('Not connected : ' . $connection->connect_error);}
 
-
 $hoy = date("Y-m-d");
-$unidad=$_GET['unidad'];
 
 $tsql="
 SELECT top 1 rol.SLL_IdSalidaLlegada,com.Cb_NumeroRuta,chofer.Ch_NombreChofer,chofer.Ch_ApellidoPaterno,chofer.Ch_ApellidoMaterno,gps.Direccion,gps.Latitud,gps.Longitud,gps.Fecha,gps.Hora from Salidas_Llegadas rol inner join Cb_Combi com
 on rol.Cb_IdCombi=com.Cb_IdCombi
 inner join Ch_Chofer chofer on rol.Ch_IdChofer=chofer.Ch_IdChofer
 inner join LocationGPS gps on gps.Imei=com.Cb_Imei
-where com.Cb_IdCombi=$unidad and gps.Fecha='$hoy'
+  where gps.Imei='353074080073115' and gps.Fecha='$hoy'
 ORDER by gps.Id_Location DESC
 ";
-
 #$tsql= "SELECT top 1 * FROM coordenadas where telefono='2228514481' order by id desc;";
 $getResults= sqlsrv_query($connection, $tsql);
 if (!$getResults) {
-  die('Invalid query: '.$tsql . sqlsrv_errors($connection));
+  die('Invalid query: ' . sqlsrv_errors($connection));
 }
 
 header("Content-type: text/xml");
@@ -53,6 +49,4 @@ while ($row = @sqlsrv_fetch_array($getResults,SQLSRV_FETCH_ASSOC)){
 }
 
 echo $dom->saveXML();
-
-
 ?>

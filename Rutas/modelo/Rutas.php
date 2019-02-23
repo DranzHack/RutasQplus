@@ -512,5 +512,20 @@ $query="
       $this->srv->desconectar();
      }
 
+     //where LaFecha=FORMAT(GETDATE(),'yyyy-MM-dd')
+     function unidadesEnRutaALGO()
+     {
+      $query="SELECT * from 
+              (select(select Cb_idCombi from Cb_Combi where Cb_NumeroRuta = X.Cb_NumeroRuta) as Unidad,
+              X.Cb_NumeroRuta, (convert(date, Inicio)) as LaFecha,
+        (convert(time,Inicio))as Hora,
+              X.SLL_IdSalidaLlegada
+              from 
+              Report2 X where Fin IS NULL) as Y  where LaFecha=FORMAT(GETDATE(),'yyyy-MM-dd')";
+      $Register=sqlsrv_query($this->srv->conectar(),$query);
+      return $Register;
+      $this->srv->desconectar();
+     }
+
 }
 ?>

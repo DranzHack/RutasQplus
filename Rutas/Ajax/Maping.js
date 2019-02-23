@@ -161,18 +161,37 @@ function initMap() {
 
     //CelMorado();
     //window.setInterval(CelMorado,10000);
-    Unidad2();
-    window.setInterval(Unidad2,10000);
+    Unidad01();
+    window.setInterval(Unidad01,10000);
+
+    Unidad02();
+    window.setInterval(Unidad02,10000);
+
+    Unidad03();
+    window.setInterval(Unidad03,10000);
+
+    Unidad04();
+    window.setInterval(Unidad04,10000);
+
+    Unidad05();
+    window.setInterval(Unidad05,10000);
+
+    Unidad06();
+    window.setInterval(Unidad06,10000);
+
+    Unidad07();
+    window.setInterval(Unidad07,10000);
+
     //Unidad3();
     //window.setInterval(Unidad3,10000);
     //Inicio de la funcion para obtener la ubicacion
 //y el checkeo virtual de la unidad 1
-function CelMorado()
+function Unidad01()
 {
   clearOverLays();
   //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
   var timestamp = new Date().getTime();
-  var data = '../../XML/CelMorado.php?t='+timestamp;
+  var data = '../../XML/Combi1.php?t='+timestamp;
 
 //Aki se grafica el market con los datos que se desean mostrar
   $.get(data,{},function(data){
@@ -683,12 +702,12 @@ function CelMorado()
 
 
 
-function Unidad3()
+function Unidad02()
 {
   clearOverLays();
   //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
   var timestamp = new Date().getTime();
-  var data = '../../XML/PruebasReporting.php?t='+timestamp;
+  var data = '../../XML/Combi2.php?t='+timestamp;
 
 //Aki se grafica el market con los datos que se desean mostrar
   $.get(data,{},function(data){
@@ -710,7 +729,7 @@ function Unidad3()
           //var html="<b>Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<br> Ubicación:"+Ub+ "<br> Fecha: "+Fecha+" Hora: "+Hora+ " </b>";
           var Date=Fecha+" "+Hora;
           var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<br> Ubicacion: "+Ub+"<br> Fecha: "+Fecha+" Hora: "+Hora+"<b>";
-          var Imagen='../../img/PoinSec.png';
+          var Imagen='../../img/08.png';
           var marker = new google.maps.Marker({
               position:latlng,
               map:map,
@@ -1222,7 +1241,7 @@ function Unidad3()
 
 
 //Empieza unidad 2
-function Unidad2()
+function Unidad03()
 {
   clearOverLays();
   //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
@@ -1245,7 +1264,7 @@ function Unidad2()
           var Id=marker.attr("Id");
           var Date=Fecha+" "+Hora;
           var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<b>";
-          var Imagen='../../img/05.png';
+          var Imagen='../../img/15.png';
           var marker = new google.maps.Marker({
               position:latlng,
               map:map,
@@ -1732,6 +1751,2080 @@ function Unidad2()
   });
 }
 /*================================ TERMINO DE FUNCIONES PARA LA LOCALIZACION DE UNIDAD 2 ============================================*/
+
+
+
+
+
+
+
+//Empieza unidad 2
+function Unidad04()
+{
+  clearOverLays();
+  //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
+  var timestamp = new Date().getTime();
+  var data = '../../XML/Combi4.php?t='+timestamp;
+
+//Aki se grafica el market con los datos que se desean mostrar
+  $.get(data,{},function(data){
+      $(data).find("marker").each(function(){
+          var marker = $(this);
+          var status = marker.attr("status");
+          var latlng=new google.maps.LatLng(parseFloat(marker
+          .attr("Latitud")),parseFloat(marker.attr("Longitud")));
+          var Ruta=marker.attr("Ruta");
+          var Chofer=marker.attr("Nombre");
+          var Paterno=marker.attr("Paterno");
+          var Materno=marker.attr("Materno");
+          var Fecha=marker.attr("Fecha");
+          var Hora=marker.attr("Hora");
+          var Id=marker.attr("Id");
+          var Date=Fecha+" "+Hora;
+          var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<b>";
+          var Imagen='../../img/banderin.png';
+          var marker = new google.maps.Marker({
+              position:latlng,
+              map:map,
+              icon:Imagen,
+              title:Date
+          });
+          google.maps.event.addListener(marker,'click',function(){
+              infoWindow.setContent(html);
+              infoWindow.open(map,marker);
+          });
+          markersArray.push(marker);
+          google.maps.event.addListener(marker,"click",function(){});
+/*======================END OF THE SHOW MARKET INFO=================================*/
+
+//Metodos para insertar un registro del Virtual Check
+          DentroFueraBase1();
+          DentroFueraBase2();
+          DentroFueraBase3();
+          DentroFueraBase4();
+          DentroFueraBase5();
+          DentroFueraBase6();
+          DentroFueraBase7();
+          DentroFueraBase8();
+          DentroFueraBase9();
+          DentroFueraBase10();
+          DentroFueraBase11();
+          DentroFueraBase12();
+          DentroFueraBase13();
+          DentroFueraBase14();
+          DentroFueraBaseEnd();
+          DentroFueraBaseInit();
+          //alert(IdEnroler);
+
+
+
+/*AKI SE PONEN TODOS LAS INSERSIONES DE CHEKING VIRTUAL ALV*/
+          function CheckingBase1()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase1.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase2()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase2.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase3()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase3.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase4()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase4.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase5()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase5.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+
+          function CheckingBase6()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase6.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase7()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase7.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase8()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase8.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase9()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase9.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase10()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase10.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase11()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase11.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase12()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase12.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase13()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase13.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase14()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase14.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingEnd()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseFin.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            });
+
+          }
+
+          function CheckingInit()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseInicio.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            })
+          }
+/*FIN FUNCIONES DE CHEKEO VIRTUAL*/
+
+/*ESFICIFICACION DE LOS METODOS DE ENTRADA Y SALIDA DE UNA GEO-CERCA*/
+       function DentroFueraBase1()
+          {
+            var Algo = false;
+            if( CircleBase1.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 1");
+                   CheckingBase1();
+                }else{
+                   console.log("Fuera base 1");
+
+                }
+          }
+
+          function DentroFueraBase2()
+          {
+            var Algo = false;
+            if( CircleBase2.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 2");
+                   CheckingBase2();
+                }else{
+                   console.log("Fuera Base 2");
+
+                }
+          }
+
+          function DentroFueraBase3()
+          {
+            var Algo = false;
+            if( CircleBase3.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base3 ");
+                   CheckingBase3();
+                }else{
+                   console.log("Fuera base 3");
+
+                }
+          }
+
+          function DentroFueraBase4()
+          {
+            var Algo = false;
+            if( CircleBase4.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 4");
+                   CheckingBase4();
+                }else{
+                   console.log("Fuera base 4");
+
+                }
+          }
+
+          function DentroFueraBase5()
+          {
+            var Algo = false;
+            if( CircleBase5.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 5");
+                   CheckingBase5();
+                }else{
+                   console.log("Fuera base 5");
+
+                }
+          }
+
+          function DentroFueraBase6()
+          {
+            var Algo = false;
+            if( CircleBase6.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 6");
+                    CheckingBase6();
+                }else{
+                   console.log("Fuera base 6");
+
+                }
+          }
+
+          function DentroFueraBase7()
+          {
+            var Algo = false;
+            if( CircleBase7.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 7");
+                    CheckingBase7();
+                }else{
+                   console.log("Fuera base 7");
+
+                }
+          }
+
+          function DentroFueraBase8()
+          {
+            var Algo = false;
+            if( CircleBase8.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 8");
+                    CheckingBase8();
+                }else{
+                   console.log("Fuera base 8");
+
+                }
+          }
+
+          function DentroFueraBase9()
+          {
+            var Algo = false;
+            if( CircleBase9.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 9");
+                    CheckingBase9();
+                }else{
+                   console.log("Fuera base 9");
+
+                }
+          }
+
+          function DentroFueraBase10()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 10");
+                    CheckingBase10();
+                }else{
+                   console.log("Fuera base 10");
+
+                }
+          }
+
+          function DentroFueraBase11()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 11");
+                    CheckingBase11();
+                }else{
+                   console.log("Fuera base 11");
+
+                }
+          }
+
+          function DentroFueraBase12()
+          {
+            var Algo=false;
+            if(CircleBase12.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 12");
+              CheckingBase12();
+            }
+            else
+            {
+                console.log("Fuera Base 12");
+            }
+          }
+
+          function DentroFueraBase13()
+          {
+            var Algo=false;
+            if(CircleBase13.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 13");
+              CheckingBase13();
+            }
+            else
+            {
+                console.log("Fuera Base 13");
+            }
+          }
+
+          function DentroFueraBase14()
+          {
+            var Algo=false;
+            if(CircleBase14.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 14");
+              CheckingBase14();
+            }
+            else
+            {
+                console.log("Fuera Base 14");
+            }
+          }
+
+          function DentroFueraBaseEnd()
+          {
+            var Algo=false;
+            if(CircleBasesEnd.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Final");
+              CheckingEnd();
+            }
+            else
+            {
+                console.log("Fuera de Base Final");
+                
+            }
+          }
+
+          function DentroFueraBaseInit()
+          {
+            var Algo=false;
+            if(CircleBasesInit.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Inicial");
+              CheckingInit();
+            }
+            else {
+              {
+                console.log("Fuera de Base Inicial")
+              }
+            }
+          }
+
+          /*==============================FINALIZA LOS METODOS DE ENTRADA Y SALIDA DE GEO-CERCA===============================*/
+
+      });
+  });
+}
+/*================================ TERMINO DE FUNCIONES PARA LA LOCALIZACION DE UNIDAD 2 ============================================*/
+
+
+
+
+
+
+//Empieza unidad 2
+function Unidad05()
+{
+  clearOverLays();
+  //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
+  var timestamp = new Date().getTime();
+  var data = '../../XML/Combi6.php?t='+timestamp;
+
+//Aki se grafica el market con los datos que se desean mostrar
+  $.get(data,{},function(data){
+      $(data).find("marker").each(function(){
+          var marker = $(this);
+          var status = marker.attr("status");
+          var latlng=new google.maps.LatLng(parseFloat(marker
+          .attr("Latitud")),parseFloat(marker.attr("Longitud")));
+          var Ruta=marker.attr("Ruta");
+          var Chofer=marker.attr("Nombre");
+          var Paterno=marker.attr("Paterno");
+          var Materno=marker.attr("Materno");
+          var Fecha=marker.attr("Fecha");
+          var Hora=marker.attr("Hora");
+          var Id=marker.attr("Id");
+          var Date=Fecha+" "+Hora;
+          var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<b>";
+          var Imagen='../../img/18.png';
+          var marker = new google.maps.Marker({
+              position:latlng,
+              map:map,
+              icon:Imagen,
+              title:Date
+          });
+          google.maps.event.addListener(marker,'click',function(){
+              infoWindow.setContent(html);
+              infoWindow.open(map,marker);
+          });
+          markersArray.push(marker);
+          google.maps.event.addListener(marker,"click",function(){});
+/*======================END OF THE SHOW MARKET INFO=================================*/
+
+//Metodos para insertar un registro del Virtual Check
+          DentroFueraBase1();
+          DentroFueraBase2();
+          DentroFueraBase3();
+          DentroFueraBase4();
+          DentroFueraBase5();
+          DentroFueraBase6();
+          DentroFueraBase7();
+          DentroFueraBase8();
+          DentroFueraBase9();
+          DentroFueraBase10();
+          DentroFueraBase11();
+          DentroFueraBase12();
+          DentroFueraBase13();
+          DentroFueraBase14();
+          DentroFueraBaseEnd();
+          DentroFueraBaseInit();
+          //alert(IdEnroler);
+
+
+
+/*AKI SE PONEN TODOS LAS INSERSIONES DE CHEKING VIRTUAL ALV*/
+          function CheckingBase1()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase1.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase2()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase2.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase3()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase3.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase4()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase4.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase5()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase5.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+
+          function CheckingBase6()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase6.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase7()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase7.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase8()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase8.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase9()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase9.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase10()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase10.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase11()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase11.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase12()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase12.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase13()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase13.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase14()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase14.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingEnd()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseFin.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            });
+
+          }
+
+          function CheckingInit()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseInicio.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            })
+          }
+/*FIN FUNCIONES DE CHEKEO VIRTUAL*/
+
+/*ESFICIFICACION DE LOS METODOS DE ENTRADA Y SALIDA DE UNA GEO-CERCA*/
+       function DentroFueraBase1()
+          {
+            var Algo = false;
+            if( CircleBase1.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 1");
+                   CheckingBase1();
+                }else{
+                   console.log("Fuera base 1");
+
+                }
+          }
+
+          function DentroFueraBase2()
+          {
+            var Algo = false;
+            if( CircleBase2.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 2");
+                   CheckingBase2();
+                }else{
+                   console.log("Fuera Base 2");
+
+                }
+          }
+
+          function DentroFueraBase3()
+          {
+            var Algo = false;
+            if( CircleBase3.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base3 ");
+                   CheckingBase3();
+                }else{
+                   console.log("Fuera base 3");
+
+                }
+          }
+
+          function DentroFueraBase4()
+          {
+            var Algo = false;
+            if( CircleBase4.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 4");
+                   CheckingBase4();
+                }else{
+                   console.log("Fuera base 4");
+
+                }
+          }
+
+          function DentroFueraBase5()
+          {
+            var Algo = false;
+            if( CircleBase5.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 5");
+                   CheckingBase5();
+                }else{
+                   console.log("Fuera base 5");
+
+                }
+          }
+
+          function DentroFueraBase6()
+          {
+            var Algo = false;
+            if( CircleBase6.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 6");
+                    CheckingBase6();
+                }else{
+                   console.log("Fuera base 6");
+
+                }
+          }
+
+          function DentroFueraBase7()
+          {
+            var Algo = false;
+            if( CircleBase7.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 7");
+                    CheckingBase7();
+                }else{
+                   console.log("Fuera base 7");
+
+                }
+          }
+
+          function DentroFueraBase8()
+          {
+            var Algo = false;
+            if( CircleBase8.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 8");
+                    CheckingBase8();
+                }else{
+                   console.log("Fuera base 8");
+
+                }
+          }
+
+          function DentroFueraBase9()
+          {
+            var Algo = false;
+            if( CircleBase9.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 9");
+                    CheckingBase9();
+                }else{
+                   console.log("Fuera base 9");
+
+                }
+          }
+
+          function DentroFueraBase10()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 10");
+                    CheckingBase10();
+                }else{
+                   console.log("Fuera base 10");
+
+                }
+          }
+
+          function DentroFueraBase11()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 11");
+                    CheckingBase11();
+                }else{
+                   console.log("Fuera base 11");
+
+                }
+          }
+
+          function DentroFueraBase12()
+          {
+            var Algo=false;
+            if(CircleBase12.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 12");
+              CheckingBase12();
+            }
+            else
+            {
+                console.log("Fuera Base 12");
+            }
+          }
+
+          function DentroFueraBase13()
+          {
+            var Algo=false;
+            if(CircleBase13.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 13");
+              CheckingBase13();
+            }
+            else
+            {
+                console.log("Fuera Base 13");
+            }
+          }
+
+          function DentroFueraBase14()
+          {
+            var Algo=false;
+            if(CircleBase14.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 14");
+              CheckingBase14();
+            }
+            else
+            {
+                console.log("Fuera Base 14");
+            }
+          }
+
+          function DentroFueraBaseEnd()
+          {
+            var Algo=false;
+            if(CircleBasesEnd.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Final");
+              CheckingEnd();
+            }
+            else
+            {
+                console.log("Fuera de Base Final");
+                
+            }
+          }
+
+          function DentroFueraBaseInit()
+          {
+            var Algo=false;
+            if(CircleBasesInit.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Inicial");
+              CheckingInit();
+            }
+            else {
+              {
+                console.log("Fuera de Base Inicial")
+              }
+            }
+          }
+
+          /*==============================FINALIZA LOS METODOS DE ENTRADA Y SALIDA DE GEO-CERCA===============================*/
+
+      });
+  });
+}
+/*================================ TERMINO DE FUNCIONES PARA LA LOCALIZACION DE UNIDAD 2 ============================================*/
+
+
+
+//Empieza unidad 2
+function Unidad06()
+{
+  clearOverLays();
+  //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
+  var timestamp = new Date().getTime();
+  var data = '../../XML/Combi6.php?t='+timestamp;
+
+//Aki se grafica el market con los datos que se desean mostrar
+  $.get(data,{},function(data){
+      $(data).find("marker").each(function(){
+          var marker = $(this);
+          var status = marker.attr("status");
+          var latlng=new google.maps.LatLng(parseFloat(marker
+          .attr("Latitud")),parseFloat(marker.attr("Longitud")));
+          var Ruta=marker.attr("Ruta");
+          var Chofer=marker.attr("Nombre");
+          var Paterno=marker.attr("Paterno");
+          var Materno=marker.attr("Materno");
+          var Fecha=marker.attr("Fecha");
+          var Hora=marker.attr("Hora");
+          var Id=marker.attr("Id");
+          var Date=Fecha+" "+Hora;
+          var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<b>";
+          var Imagen='../../img/07.png';
+          var marker = new google.maps.Marker({
+              position:latlng,
+              map:map,
+              icon:Imagen,
+              title:Date
+          });
+          google.maps.event.addListener(marker,'click',function(){
+              infoWindow.setContent(html);
+              infoWindow.open(map,marker);
+          });
+          markersArray.push(marker);
+          google.maps.event.addListener(marker,"click",function(){});
+/*======================END OF THE SHOW MARKET INFO=================================*/
+
+//Metodos para insertar un registro del Virtual Check
+          DentroFueraBase1();
+          DentroFueraBase2();
+          DentroFueraBase3();
+          DentroFueraBase4();
+          DentroFueraBase5();
+          DentroFueraBase6();
+          DentroFueraBase7();
+          DentroFueraBase8();
+          DentroFueraBase9();
+          DentroFueraBase10();
+          DentroFueraBase11();
+          DentroFueraBase12();
+          DentroFueraBase13();
+          DentroFueraBase14();
+          DentroFueraBaseEnd();
+          DentroFueraBaseInit();
+          //alert(IdEnroler);
+
+
+
+/*AKI SE PONEN TODOS LAS INSERSIONES DE CHEKING VIRTUAL ALV*/
+          function CheckingBase1()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase1.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase2()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase2.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase3()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase3.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase4()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase4.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase5()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase5.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+
+          function CheckingBase6()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase6.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase7()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase7.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase8()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase8.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase9()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase9.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase10()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase10.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase11()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase11.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase12()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase12.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase13()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase13.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase14()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase14.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingEnd()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseFin.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            });
+
+          }
+
+          function CheckingInit()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseInicio.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            })
+          }
+/*FIN FUNCIONES DE CHEKEO VIRTUAL*/
+
+/*ESFICIFICACION DE LOS METODOS DE ENTRADA Y SALIDA DE UNA GEO-CERCA*/
+       function DentroFueraBase1()
+          {
+            var Algo = false;
+            if( CircleBase1.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 1");
+                   CheckingBase1();
+                }else{
+                   console.log("Fuera base 1");
+
+                }
+          }
+
+          function DentroFueraBase2()
+          {
+            var Algo = false;
+            if( CircleBase2.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 2");
+                   CheckingBase2();
+                }else{
+                   console.log("Fuera Base 2");
+
+                }
+          }
+
+          function DentroFueraBase3()
+          {
+            var Algo = false;
+            if( CircleBase3.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base3 ");
+                   CheckingBase3();
+                }else{
+                   console.log("Fuera base 3");
+
+                }
+          }
+
+          function DentroFueraBase4()
+          {
+            var Algo = false;
+            if( CircleBase4.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 4");
+                   CheckingBase4();
+                }else{
+                   console.log("Fuera base 4");
+
+                }
+          }
+
+          function DentroFueraBase5()
+          {
+            var Algo = false;
+            if( CircleBase5.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 5");
+                   CheckingBase5();
+                }else{
+                   console.log("Fuera base 5");
+
+                }
+          }
+
+          function DentroFueraBase6()
+          {
+            var Algo = false;
+            if( CircleBase6.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 6");
+                    CheckingBase6();
+                }else{
+                   console.log("Fuera base 6");
+
+                }
+          }
+
+          function DentroFueraBase7()
+          {
+            var Algo = false;
+            if( CircleBase7.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 7");
+                    CheckingBase7();
+                }else{
+                   console.log("Fuera base 7");
+
+                }
+          }
+
+          function DentroFueraBase8()
+          {
+            var Algo = false;
+            if( CircleBase8.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 8");
+                    CheckingBase8();
+                }else{
+                   console.log("Fuera base 8");
+
+                }
+          }
+
+          function DentroFueraBase9()
+          {
+            var Algo = false;
+            if( CircleBase9.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 9");
+                    CheckingBase9();
+                }else{
+                   console.log("Fuera base 9");
+
+                }
+          }
+
+          function DentroFueraBase10()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 10");
+                    CheckingBase10();
+                }else{
+                   console.log("Fuera base 10");
+
+                }
+          }
+
+          function DentroFueraBase11()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 11");
+                    CheckingBase11();
+                }else{
+                   console.log("Fuera base 11");
+
+                }
+          }
+
+          function DentroFueraBase12()
+          {
+            var Algo=false;
+            if(CircleBase12.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 12");
+              CheckingBase12();
+            }
+            else
+            {
+                console.log("Fuera Base 12");
+            }
+          }
+
+          function DentroFueraBase13()
+          {
+            var Algo=false;
+            if(CircleBase13.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 13");
+              CheckingBase13();
+            }
+            else
+            {
+                console.log("Fuera Base 13");
+            }
+          }
+
+          function DentroFueraBase14()
+          {
+            var Algo=false;
+            if(CircleBase14.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 14");
+              CheckingBase14();
+            }
+            else
+            {
+                console.log("Fuera Base 14");
+            }
+          }
+
+          function DentroFueraBaseEnd()
+          {
+            var Algo=false;
+            if(CircleBasesEnd.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Final");
+              CheckingEnd();
+            }
+            else
+            {
+                console.log("Fuera de Base Final");
+                
+            }
+          }
+
+          function DentroFueraBaseInit()
+          {
+            var Algo=false;
+            if(CircleBasesInit.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Inicial");
+              CheckingInit();
+            }
+            else {
+              {
+                console.log("Fuera de Base Inicial")
+              }
+            }
+          }
+
+          /*==============================FINALIZA LOS METODOS DE ENTRADA Y SALIDA DE GEO-CERCA===============================*/
+
+      });
+  });
+}
+/*================================ TERMINO DE FUNCIONES PARA LA LOCALIZACION DE UNIDAD 2 ============================================*/
+
+
+
+
+
+
+
+//Empieza unidad 2
+function Unidad07()
+{
+  clearOverLays();
+  //Timestamp obtiene la fecha para posterios pasarlos a la ruta y asi hacer el REFRESH Del market
+  var timestamp = new Date().getTime();
+  var data = '../../XML/Combi7.php?t='+timestamp;
+
+//Aki se grafica el market con los datos que se desean mostrar
+  $.get(data,{},function(data){
+      $(data).find("marker").each(function(){
+          var marker = $(this);
+          var status = marker.attr("status");
+          var latlng=new google.maps.LatLng(parseFloat(marker
+          .attr("Latitud")),parseFloat(marker.attr("Longitud")));
+          var Ruta=marker.attr("Ruta");
+          var Chofer=marker.attr("Nombre");
+          var Paterno=marker.attr("Paterno");
+          var Materno=marker.attr("Materno");
+          var Fecha=marker.attr("Fecha");
+          var Hora=marker.attr("Hora");
+          var Id=marker.attr("Id");
+          var Date=Fecha+" "+Hora;
+          var html = "<b> Unidad: "+Ruta+"<br>Chofer: "+Chofer+" "+Paterno+" "+Materno+"<b>";
+          var Imagen='../../img/BPH.png';
+          var marker = new google.maps.Marker({
+              position:latlng,
+              map:map,
+              icon:Imagen,
+              title:Date
+          });
+          google.maps.event.addListener(marker,'click',function(){
+              infoWindow.setContent(html);
+              infoWindow.open(map,marker);
+          });
+          markersArray.push(marker);
+          google.maps.event.addListener(marker,"click",function(){});
+/*======================END OF THE SHOW MARKET INFO=================================*/
+
+//Metodos para insertar un registro del Virtual Check
+          DentroFueraBase1();
+          DentroFueraBase2();
+          DentroFueraBase3();
+          DentroFueraBase4();
+          DentroFueraBase5();
+          DentroFueraBase6();
+          DentroFueraBase7();
+          DentroFueraBase8();
+          DentroFueraBase9();
+          DentroFueraBase10();
+          DentroFueraBase11();
+          DentroFueraBase12();
+          DentroFueraBase13();
+          DentroFueraBase14();
+          DentroFueraBaseEnd();
+          DentroFueraBaseInit();
+          //alert(IdEnroler);
+
+
+
+/*AKI SE PONEN TODOS LAS INSERSIONES DE CHEKING VIRTUAL ALV*/
+          function CheckingBase1()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase1.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase2()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase2.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase3()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase3.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase4()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase4.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase5()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase5.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+
+          function CheckingBase6()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase6.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase7()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase7.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase8()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase8.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase9()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase9.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+          function CheckingBase10()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase10.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase11()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase11.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase12()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase12.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase13()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase13.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingBase14()
+          {
+                var id=Id;
+                //alert(id);
+                $.ajax({
+                    url: "../../controlador/CheckingBase14.php",
+                    method: "POST",
+                    data: {id: id,},
+                    success: function(data){
+                        var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+                    }
+                });
+
+          }
+
+          function CheckingEnd()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseFin.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            });
+
+          }
+
+          function CheckingInit()
+          {
+            var id=Id;
+            $.ajax({
+              url: '../../controlador/CheckingBaseInicio.php',
+              method: 'POST',
+              data: {id: id,},
+              success: function(data)
+              {
+                var nota = alertify.notify(data,'success',5,function(){console.log('Spiderman');});
+              }
+            })
+          }
+/*FIN FUNCIONES DE CHEKEO VIRTUAL*/
+
+/*ESFICIFICACION DE LOS METODOS DE ENTRADA Y SALIDA DE UNA GEO-CERCA*/
+       function DentroFueraBase1()
+          {
+            var Algo = false;
+            if( CircleBase1.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 1");
+                   CheckingBase1();
+                }else{
+                   console.log("Fuera base 1");
+
+                }
+          }
+
+          function DentroFueraBase2()
+          {
+            var Algo = false;
+            if( CircleBase2.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 2");
+                   CheckingBase2();
+                }else{
+                   console.log("Fuera Base 2");
+
+                }
+          }
+
+          function DentroFueraBase3()
+          {
+            var Algo = false;
+            if( CircleBase3.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base3 ");
+                   CheckingBase3();
+                }else{
+                   console.log("Fuera base 3");
+
+                }
+          }
+
+          function DentroFueraBase4()
+          {
+            var Algo = false;
+            if( CircleBase4.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 4");
+                   CheckingBase4();
+                }else{
+                   console.log("Fuera base 4");
+
+                }
+          }
+
+          function DentroFueraBase5()
+          {
+            var Algo = false;
+            if( CircleBase5.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 5");
+                   CheckingBase5();
+                }else{
+                   console.log("Fuera base 5");
+
+                }
+          }
+
+          function DentroFueraBase6()
+          {
+            var Algo = false;
+            if( CircleBase6.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 6");
+                    CheckingBase6();
+                }else{
+                   console.log("Fuera base 6");
+
+                }
+          }
+
+          function DentroFueraBase7()
+          {
+            var Algo = false;
+            if( CircleBase7.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 7");
+                    CheckingBase7();
+                }else{
+                   console.log("Fuera base 7");
+
+                }
+          }
+
+          function DentroFueraBase8()
+          {
+            var Algo = false;
+            if( CircleBase8.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 8");
+                    CheckingBase8();
+                }else{
+                   console.log("Fuera base 8");
+
+                }
+          }
+
+          function DentroFueraBase9()
+          {
+            var Algo = false;
+            if( CircleBase9.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 9");
+                    CheckingBase9();
+                }else{
+                   console.log("Fuera base 9");
+
+                }
+          }
+
+          function DentroFueraBase10()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 10");
+                    CheckingBase10();
+                }else{
+                   console.log("Fuera base 10");
+
+                }
+          }
+
+          function DentroFueraBase11()
+          {
+            var Algo = false;
+            if( CircleBase10.getBounds().contains(marker.getPosition()) == true ){
+                  console.log("Dentro Base 11");
+                    CheckingBase11();
+                }else{
+                   console.log("Fuera base 11");
+
+                }
+          }
+
+          function DentroFueraBase12()
+          {
+            var Algo=false;
+            if(CircleBase12.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 12");
+              CheckingBase12();
+            }
+            else
+            {
+                console.log("Fuera Base 12");
+            }
+          }
+
+          function DentroFueraBase13()
+          {
+            var Algo=false;
+            if(CircleBase13.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 13");
+              CheckingBase13();
+            }
+            else
+            {
+                console.log("Fuera Base 13");
+            }
+          }
+
+          function DentroFueraBase14()
+          {
+            var Algo=false;
+            if(CircleBase14.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro Base 14");
+              CheckingBase14();
+            }
+            else
+            {
+                console.log("Fuera Base 14");
+            }
+          }
+
+          function DentroFueraBaseEnd()
+          {
+            var Algo=false;
+            if(CircleBasesEnd.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Final");
+              CheckingEnd();
+            }
+            else
+            {
+                console.log("Fuera de Base Final");
+                
+            }
+          }
+
+          function DentroFueraBaseInit()
+          {
+            var Algo=false;
+            if(CircleBasesInit.getBounds().contains(marker.getPosition())==true)
+            {
+              console.log("Dentro de Base Inicial");
+              CheckingInit();
+            }
+            else {
+              {
+                console.log("Fuera de Base Inicial")
+              }
+            }
+          }
+
+          /*==============================FINALIZA LOS METODOS DE ENTRADA Y SALIDA DE GEO-CERCA===============================*/
+
+      });
+  });
+}
+/*================================ TERMINO DE FUNCIONES PARA LA LOCALIZACION DE UNIDAD 2 ============================================*/
+
+
+
+
+
+
+
 
 
 
