@@ -3,7 +3,8 @@
 
     if(isset($_SESSION['Usuario']))
     {
-        if($_SESSION['privilegio']=='Administrador')
+      
+        if($_SESSION['privilegio']=='Administrador' || $_SESSION['privilegio']=='Unidad')
         {
 
         }
@@ -12,6 +13,7 @@
             session_destroy();
             header('location: ../../');
         }
+      
     }    else{
         session_destroy();
         header('location: ../../'); 
@@ -37,11 +39,20 @@
 
 <div class="section">
 
-        <?php require_once '../Recursos/navbarRuta.php' ?>
+        <?php
+            if($_SESSION['privilegio']=='Administrador'){
+                require_once '../Recursos/navbarRuta.php';
+            }
+            elseif($_SESSION['privilegio']=='Unidad'){
+                require_once '../Recursos/NavBarUnidades.php';
+            }
+        ?>
         <br>
               <hr>
               
-                    <center><h1>Monitoreo Ruta 53</h1></center>
+                    <center>
+                      <h1>Monitoreo</h1>
+                    </center>
                       <div class="col-xl-12">
                         <form id="FormF" name="FormF" enctype="multipart/form-data">
                             <input class="form-group" type="date" id="fecha" name="fecha">
@@ -100,6 +111,6 @@
     <script src="../../Ajax/Dropdown.js"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
 
-<script src="../../Ajax/Monitoreo.js"></script>
+    <script src="../../Ajax/Monitoreo.js"></script>
 </body>
 </html>

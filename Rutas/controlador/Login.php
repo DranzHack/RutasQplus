@@ -3,7 +3,6 @@ session_start();
 $Username=$_POST['Usuario'];
 $Pass=$_POST['Pass'];
 
-
 require_once '../modelo/Rutas.php';
 
 $ElOGTO=new Unidades;
@@ -45,6 +44,7 @@ else
                 echo "2";
             }
         }
+
     }
 }
 

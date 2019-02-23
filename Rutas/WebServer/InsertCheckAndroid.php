@@ -2,7 +2,7 @@
 
 $serverName = "192.168.0.126";
 $connectionOptions = array(
-    "database" => "Rt_Ruta53",
+    "database" => "DB_Ruta53",
     "uid" => "sa",
     "pwd" => "Oas970520"
 );

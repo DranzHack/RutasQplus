@@ -6,15 +6,20 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Unidades.php">Home <span class="sr-only">(current)</span></a>
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link" href="#">Reportes <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Monitoreo.php">Reportes<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#">Recorridos <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="unidadDueno.php">Mis unidades <span class="sr-only">(current)</span></a>
+      </li>
+
+
+      <li class="nav-item active">
+        <a class="nav-link" href="recorrido.php">Recorridos <span class="sr-only">(current)</span></a>
       </li>
 
 

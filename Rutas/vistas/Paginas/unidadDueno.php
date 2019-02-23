@@ -3,7 +3,7 @@
 
     if(isset($_SESSION['Usuario']))
     {
-        if($_SESSION['privilegio']=='Administrador')
+        if($_SESSION['privilegio']=='Unidad')
         {
             
         }
@@ -38,7 +38,7 @@
 <body>
     <div class="section">
 
-        <?php require_once '../Recursos/navbarRuta.php' ?>
+        <?php require_once '../Recursos/NavBarUnidades.php' ?>
         <hr>
         <center><h1 class="h3 mb-3 font-weight-normal">Mis unidades</h1></center>
         <div class="container">
@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody id="Mostrar">
-                        <?php require (__DIR__.'/../../controlador/unidadDueño.php') ?>
+                        
                     </tbody>
                 </table>
                 </div>
@@ -70,7 +70,7 @@
     </div>
 
     <div id="showResume" class="modal fade">
-        <div class="modal-dialog" style="max-width: 70% !important;">
+        <div class="modal-dialog" style="max-width: 98% !important;">
             <div class="modal-content" style="overflow-y: scroll">
                 <table class="table table-hover text-center">
                     <thead>

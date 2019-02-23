@@ -57,13 +57,22 @@
     <script src="../../Ajax/Dropdown.js"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
 
-    <script src="../../Ajax/Maping.js">
-
-    </script>
+    <script src="../../Ajax/Maping.js"></script>
+    <script src="../../Ajax/unidadesEnRuta.js"></script>
     
     <script>
         setTimeout(()=>initMap(),800);
     </script>
+
+    <div>
+        <h5>Unidades en Ruta</h5>
+        <div class="" id="unidades">
+            
+        </div>
+        <div class="" id="resume">
+            
+        </div>
+    </div>
 
 </body>
 </html>

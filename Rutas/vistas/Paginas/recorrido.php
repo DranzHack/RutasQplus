@@ -1,3 +1,22 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['Usuario']))
+    {
+        if($_SESSION['privilegio']=='Administrador'||$_SESSION['privilegio']=='Unidad')
+        {
+            
+        }
+        else
+        {
+            session_destroy();
+            header('location: ../../');
+        }
+    }else{
+        session_destroy();
+        header('location: ../../'); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +38,25 @@
 <body>
 
     <div class="section">
-        <?php require_once '../Recursos/navbarRuta.php' ?>
+        <?php
+            if($_SESSION['privilegio']=='Administrador'){
+                require_once '../Recursos/navbarRuta.php';
+            }
+            elseif($_SESSION['privilegio']=='Unidad'){
+                require_once '../Recursos/NavBarUnidades.php';
+            }
+        ?>
         <form id="DatosAlv">
                     <input class="form-control" type="date" name="fecha" id="fecha" style="width:33%;display: inline-block;">
                     <select class="form-control" name="unidad" id="unidad" style="width:33%;display: inline-block;">
-                        <?php require_once '../../controlador/ComboUnidades.php'; ?>
+                        <?php 
+                            if($_SESSION['privilegio']=='Administrador'){
+                                require_once '../../controlador/ComboUnidades.php';
+                            }
+                            elseif($_SESSION['privilegio']=='Unidad'){
+                                require_once '../../controlador/ComboUnidadesDueño.php';
+                            }
+                        ?>
                     </select>
                     <select class="form-control" name="corrida" id="corrida" style="width:33%;display: inline-block;">
                     </select>
@@ -36,41 +69,7 @@
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../../Ajax/recorrido.js"></script>
     <script type="text/javascript">
-        /*$(document).ready(function(){
-                
-                //var FormX=new FormData(document.getElementById('DatosAlv'));
-                //var url = '../../../XML/XmlRCombi1.php';
-                /*
-                $.ajax({
-                    method: 'GET',
-                    url:"../../../XML/XmlRCombi1.php?Fecha="+F,
-                    data: {F:F,},
-                    success: function(datos)
-                    {
-                        initMap();
-                    }
-                });
-                
-            });
-
-        });*/
-        //var ALGO=document.getElementById("Fecha");
-        /*
-        $('#Fecha').on('change',function(){
-            var F=$('#Fecha').val();
-            var url = '../../../XML/XmlRCombi1.php';
-            $.ajax({
-                type: 'POST',
-                url:url,
-                data:{F:F,},
-                success: function(datos)
-                {
-                    console.log('datos');
-                }
-            });
-        });
-        */
-
+        
     </script>
     
 </body>

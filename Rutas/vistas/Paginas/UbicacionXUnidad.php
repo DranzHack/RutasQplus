@@ -1,3 +1,22 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['Usuario']))
+    {
+        if($_SESSION['privilegio']=='Administrador')
+        {
+            
+        }
+        else
+        {
+            session_destroy();
+            header('location: ../../');
+        }
+    }else{
+        session_destroy();
+        header('location: ../../'); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

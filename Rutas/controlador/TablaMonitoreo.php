@@ -1,11 +1,21 @@
 <?php
+    session_start();
     require_once dirname(__DIR__).'/modelo/Rutas.php';
     $LaWea = new Unidades();
-    $registros1 = $LaWea->Report();
+    if($_SESSION['privilegio']=='Unidad'){
+        if($_POST['t']){
+            $registros1 = $LaWea->ReportUnidad();
+        }else{
+            $registros1 = $LaWea->ReportUnidadDueno();
+        }
+    }
+    elseif($_SESSION['privilegio']=='Administrador'){
+        $registros1 = $LaWea->Report();
+    }
 
     if($registros1==false)
     {
-        echo 'No hay Datos';
+        echo 'No hay informacion por mostrar';
     }
     else
     {
@@ -49,7 +59,7 @@
             <td>'.$row['Fin'].'</td>
         </tr>';
         }
-        echo $html;
+        echo $html==''?'<td>No hay informacion por mostrar</td>':$html;
     }
 
 ?>
